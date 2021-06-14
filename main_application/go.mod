@@ -1,4 +1,4 @@
-module github.com/ahojukka5/dwk/cmd/hashgenerator
+module github.com/ahojukka5/dwk/main_application
 
 go 1.15
 

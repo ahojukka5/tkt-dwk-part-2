@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dwk-app-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dwk-app
+  template:
+    metadata:
+      labels:
+        app: dwk-app
+    spec:
+      containers:
+        - name: dwk-app
+          image: ahojukka5/dwk-app:0.2

@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: dwk-app
-          image: ahojukka5/dwk-app:0.4
+          image: ahojukka5/dwk-app:0.5

@@ -12,6 +12,17 @@ spec:
       labels:
         app: mainapp
     spec:
+      volumes:
+        - name: cache
+          emptyDir: {}
       containers:
-        - name: mainapp
-          image: ahojukka5/dwk-mainapp:0.2
+        - name: dwk-main-gen-timestamp
+          image: ahojukka5/dwk-main-gen-timestamp:0.2
+          volumeMounts:
+            - name: cache
+              mountPath: /cache
+        - name: dwk-main-read-timestamp
+          image: ahojukka5/dwk-main-read-timestamp:0.2
+          volumeMounts:
+            - name: cache
+              mountPath: /cache

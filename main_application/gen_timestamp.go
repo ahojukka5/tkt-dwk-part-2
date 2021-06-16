@@ -7,7 +7,7 @@ import (
 
 func main() {
 	for {
-		f, err := os.Create("timestamp")
+		f, err := os.Create("/cache/timestamp")
 		if err != nil {
 			panic(err)
 		}

@@ -12,7 +12,7 @@ func main() {
 	random_string := uuid.NewV4()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		t, err := ioutil.ReadFile("timestamp")
+		t, err := ioutil.ReadFile("/cache/timestamp")
 		if err != nil {
 			panic(err)
 		}

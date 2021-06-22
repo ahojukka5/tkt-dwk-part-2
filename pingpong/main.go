@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"strconv"
 )
 
 func main() {
@@ -10,6 +12,14 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, cnt)
+
+		f, err := os.Create("/media/shared/number_of_pingpongs")
+		if err != nil {
+			panic(err)
+		}
+		defer f.Close()
+		f.WriteString(strconv.Itoa(cnt))
+
 		cnt += 1
 	})
 

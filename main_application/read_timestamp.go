@@ -16,7 +16,12 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Fprintf(w, "%s: %s\n", t, random_string)
+		fmt.Fprintf(w, "%s: %s.\n", t, random_string)
+		t2, err2 := ioutil.ReadFile("/media/shared/number_of_pingpongs")
+		if err2 != nil {
+			panic(err2)
+		}
+		fmt.Fprintf(w, "Ping Pongs: %s\n", t2)
 	})
 
 	port := "8001"

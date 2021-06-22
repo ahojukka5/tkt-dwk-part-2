@@ -62,7 +62,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	println("Filename is", full_filename)
 	if !Exists(full_filename) {
 		println("File does not exist, downloading")
-		url := "https://picsum.photos/1200"
+		url := "https://picsum.photos/600"
 		DownloadFile(full_filename, url)
 	} else {
 		println("File already exists, not downloading.")
@@ -75,7 +75,18 @@ func index(w http.ResponseWriter, r *http.Request) {
   <title>YATA - Yet Another Todo App</title>
 </head>
 <body>
-  <img src="/static/{{ . }}" />
+  <div>
+    <img src="/static/{{ . }}" />
+    <form>
+      <label for="todo">Todo:</label><br>
+      <input type="text" id="todo" name="todo" maxlength="140"><br>
+      <input type="submit" value="Create TODO">
+    </form>
+    <ul>
+      <li>TODO 1</li>
+      <li>TODO 2</li>
+    </ul>
+  </div>
 </body>
 </html>
 `)

@@ -12,6 +12,12 @@ spec:
       labels:
         app: dwk-app
     spec:
+      volumes:
+        - name: cache
+          emptyDir: {}
       containers:
         - name: dwk-app
-          image: ahojukka5/dwk-app:0.5
+          image: ahojukka5/dwk-app:0.6
+          volumeMounts:
+            - name: cache
+              mountPath: /var/cache/jukka

@@ -17,11 +17,20 @@ func main() {
 			panic(err)
 		}
 		fmt.Fprintf(w, "%s: %s.\n", t, random_string)
-		t2, err2 := ioutil.ReadFile("/media/shared/number_of_pingpongs")
-		if err2 != nil {
-			panic(err2)
+
+		// for local testing
+		// resp, err := http.Get("http://localhost:8081/pingpong")
+
+		resp, err := http.Get("http://pingpong-svc:9002")
+		if err != nil {
+			panic(err)
 		}
-		fmt.Fprintf(w, "Ping Pongs: %s\n", t2)
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			panic(err)
+		}
+		cnt := string(body)
+		fmt.Fprintf(w, "Ping Pongs: %s\n", cnt)
 	})
 
 	port := "8001"

@@ -15,6 +15,9 @@ spec:
       volumes:
         - name: cache
           emptyDir: {}
+        - name: shared-data
+          persistentVolumeClaim:
+            claimName: data-claim
       containers:
         - name: dwk-main-gen-timestamp
           image: ahojukka5/dwk-main-gen-timestamp:0.2
@@ -22,7 +25,9 @@ spec:
             - name: cache
               mountPath: /cache
         - name: dwk-main-read-timestamp
-          image: ahojukka5/dwk-main-read-timestamp:0.2
+          image: ahojukka5/dwk-main-read-timestamp:0.4
           volumeMounts:
             - name: cache
               mountPath: /cache
+            - name: shared-data
+              mountPath: /media/shared

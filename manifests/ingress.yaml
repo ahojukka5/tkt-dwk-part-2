@@ -16,3 +16,7 @@ spec:
         backend:
           serviceName: pingpong-svc
           servicePort: 9002
+      - path: /api
+        backend:
+          serviceName: todo-backend-svc
+          servicePort: 8000

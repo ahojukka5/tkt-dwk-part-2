@@ -10,9 +10,9 @@
 <body>
     <div>
         <img src="/static/{{ .Picture }}" />
-        <form>
+        <form action="/add_todo" method="post">
             <label for="todo">Todo:</label><br>
-            <input type="text" id="todo" name="todo" maxlength="140"><br>
+            <input type="text" name="task" maxlength="140"><br>
             <input type="submit" value="Create TODO">
         </form>
         <ul>

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dwk-app-dep
+  name: todo-frontend-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dwk-app
+      app: todo-frontend
   template:
     metadata:
       labels:
-        app: dwk-app
+        app: todo-frontend
     spec:
       volumes:
         - name: cache
           emptyDir: {}
       containers:
-        - name: dwk-app
-          image: ahojukka5/dwk-app:0.7
+        - name: todo-frontend
+          image: ahojukka5/dwk-todo-frontend:latest
           volumeMounts:
             - name: cache
               mountPath: /var/cache/jukka

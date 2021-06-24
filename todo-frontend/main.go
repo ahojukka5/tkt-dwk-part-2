@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha1"
 	"encoding/hex"
+	"encoding/json"
 	"html/template"
 	"io"
 	"log"
@@ -70,20 +72,66 @@ func downloadPicture() string {
 	return filename
 }
 
+type Item struct {
+	ID   int    `json:"id"`
+	Task string `json:"task"`
+}
+
+/*
+var items = []Item{
+	{
+		ID:   1,
+		Task: "Buy coffee",
+	},
+	{
+		ID:   2,
+		Task: "Drink coffee",
+	},
+}
+*/
+
+type IndexData struct {
+	Picture string
+	Items   []Item
+}
+
+var Client = &http.Client{Timeout: 10 * time.Second}
+
+func getJson(url string, target interface{}) error {
+	r, err := Client.Get(url)
+	if err != nil {
+		log.Panic(err)
+	}
+	defer r.Body.Close()
+	return json.NewDecoder(r.Body).Decode(target)
+}
+
+const port = ":3000"
+const api_url = "/api" // "http://localhost:8000"
+
 func index(w http.ResponseWriter, r *http.Request) {
 	pic_file := downloadPicture()
+	var items []Item
+	getJson(api_url+"/todos", &items)
 	tmpl_file := filepath.Join("templates", "index.html")
 	tmpl, _ := template.ParseFiles(tmpl_file)
-	tmpl.ExecuteTemplate(w, "index.html", pic_file)
+	data := IndexData{pic_file, items}
+	tmpl.ExecuteTemplate(w, "index.html", data)
+}
+
+func add_todo(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	item := Item{0, r.Form.Get("task")}
+	jsonValue, _ := json.Marshal(item)
+	http.Post(api_url+"/todos", "application/json", bytes.NewBuffer(jsonValue))
+	http.Redirect(w, r, "/", http.StatusFound)
 }
 
 func main() {
-
 	fs := http.FileServer(http.Dir("/var/cache/jukka"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", index)
-
-	port := ":3000"
+	http.HandleFunc("/add_todo", add_todo)
 	println("Server address: http://localhost" + port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -51,9 +52,8 @@ func DownloadFile(filepath string, url string) error {
 	return err
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
-
-	// Download the picture of the day to cache if does not exist
+// Download the picture of the day to cache if does not exist
+func downloadPicture() string {
 	time := time.Now().UTC().Format("2006-01-02")
 	path := "/var/cache/jukka/"
 	filename := SHA1(time) + ".jpg"
@@ -67,30 +67,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 	} else {
 		println("File already exists, not downloading.")
 	}
+	return filename
+}
 
-	tmpl := template.New("index")
-	tmpl, _ = tmpl.Parse(`<html>
-<head>
-  <meta charset="utf-8">
-  <title>YATA - Yet Another Todo App</title>
-</head>
-<body>
-  <div>
-    <img src="/static/{{ . }}" />
-    <form>
-      <label for="todo">Todo:</label><br>
-      <input type="text" id="todo" name="todo" maxlength="140"><br>
-      <input type="submit" value="Create TODO">
-    </form>
-    <ul>
-      <li>TODO 1</li>
-      <li>TODO 2</li>
-    </ul>
-  </div>
-</body>
-</html>
-`)
-	tmpl.ExecuteTemplate(w, "index", filename)
+func index(w http.ResponseWriter, r *http.Request) {
+	pic_file := downloadPicture()
+	tmpl_file := filepath.Join("templates", "index.html")
+	tmpl, _ := template.ParseFiles(tmpl_file)
+	tmpl.ExecuteTemplate(w, "index.html", pic_file)
 }
 
 func main() {
@@ -99,9 +83,9 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", index)
 
-	port := "8000"
-	println("Server started in port", port)
-	err := http.ListenAndServe(":"+port, nil)
+	port := ":3000"
+	println("Server address: http://localhost" + port)
+	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

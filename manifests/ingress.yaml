@@ -10,7 +10,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: mainapp-svc
+          serviceName: todo-frontend-svc
           servicePort: 2345
       - path: /pingpong
         backend:

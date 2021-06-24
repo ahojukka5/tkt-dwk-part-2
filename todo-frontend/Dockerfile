@@ -1,10 +1,12 @@
 FROM golang as build
 
-COPY . /build
-WORKDIR /build
+COPY . /app
+WORKDIR /app
 
 RUN CGO_ENABLED=0 go build -a -ldflags '-s' .
 
 FROM alpine:latest
-COPY --from=build /build/todo-frontend /app/todo-frontend
-ENTRYPOINT ["/app/todo-frontend"]
+COPY --from=build /app/ /app/
+EXPOSE 3000
+WORKDIR /app
+CMD ["./todo-frontend"]

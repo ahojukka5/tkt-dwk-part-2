@@ -6,6 +6,6 @@ WORKDIR /app
 RUN CGO_ENABLED=0 go build -a -ldflags '-s' .
 
 FROM alpine:latest
-COPY --from=build /app/todo-backend /app/todo-backend
+COPY --from=build /app/ /app/
 EXPOSE 8000
-ENTRYPOINT ["/app/todo-backend"]
+CMD ["/app/todo-backend"]

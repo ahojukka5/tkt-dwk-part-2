@@ -98,18 +98,30 @@ type IndexData struct {
 var Client = &http.Client{Timeout: 10 * time.Second}
 
 func getJson(url string, target interface{}) error {
-	r, err := Client.Get(url)
+	println("todo-frontend: getJson", url)
+	resp, err := Client.Get(url)
 	if err != nil {
+		println("todo-frontend: getJson: failed to fetch data")
 		log.Panic(err)
 	}
-	defer r.Body.Close()
-	return json.NewDecoder(r.Body).Decode(target)
+	defer resp.Body.Close()
+	/*
+		bodyBytes, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			println("todo-frontend: getJson: failed to read data")
+			log.Panic(err)
+		}
+		bodyString := string(bodyBytes)
+		println("todo-frontend: getJson: resp.body ", bodyString)
+	*/
+	return json.NewDecoder(resp.Body).Decode(target)
 }
 
 const port = ":3000"
-const api_url = "/api" // "http://localhost:8000"
+const api_url = "http://todo-backend-svc:8000" // "http://localhost:8000"
 
 func index(w http.ResponseWriter, r *http.Request) {
+	println("todo-frontend: index")
 	pic_file := downloadPicture()
 	var items []Item
 	getJson(api_url+"/todos", &items)
@@ -120,6 +132,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func add_todo(w http.ResponseWriter, r *http.Request) {
+	println("todo-frontend: add_todo")
 	r.ParseForm()
 	item := Item{0, r.Form.Get("task")}
 	jsonValue, _ := json.Marshal(item)

@@ -32,6 +32,7 @@ func Health(w http.ResponseWriter, r *http.Request) {
 }
 
 func getTodos(w http.ResponseWriter, r *http.Request) {
+	println("todo-backend: getTodos")
 	w.Header().Set("Content-Type", "application/json")
 	db, err := json.Marshal(db)
 	if err != nil {
@@ -41,6 +42,7 @@ func getTodos(w http.ResponseWriter, r *http.Request) {
 }
 
 func postTodo(w http.ResponseWriter, r *http.Request) {
+	println("todo-backend: postTodo")
 	decoder := json.NewDecoder(r.Body)
 	var item Item
 	err := decoder.Decode(&item)

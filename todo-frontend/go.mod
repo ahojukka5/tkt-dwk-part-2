@@ -1,3 +1,3 @@
-module github.com/ahojukka5/dwk/app
+module github.com/tkt-dwk/todo-frontend
 
 go 1.15

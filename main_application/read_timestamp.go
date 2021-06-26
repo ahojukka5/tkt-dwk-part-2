@@ -21,7 +21,7 @@ func main() {
 		// for local testing
 		// resp, err := http.Get("http://localhost:8081/pingpong")
 
-		resp, err := http.Get("http://pingpong-svc:9002")
+		resp, err := http.Get("http://pingpong-svc:8000")
 		if err != nil {
 			panic(err)
 		}
@@ -33,7 +33,7 @@ func main() {
 		fmt.Fprintf(w, "Ping Pongs: %s\n", cnt)
 	})
 
-	port := "8001"
+	port := "3000"
 	println("Server started in port " + port)
 	http.ListenAndServe(":"+port, nil)
 

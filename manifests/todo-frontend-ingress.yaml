@@ -1,12 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: dwk-app-ingress
+  name: todo-frontend-ingress
 spec:
   rules:
   - http:
       paths:
       - path: /
         backend:
-          serviceName: dwk-app-svc
-          servicePort: 2345
+          serviceName: todo-frontend-svc
+          servicePort: 3000

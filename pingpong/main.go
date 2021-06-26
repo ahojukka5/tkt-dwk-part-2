@@ -14,7 +14,7 @@ func main() {
 		cnt += 1
 	})
 
-	port := "8002"
+	port := "8000"
 	println("Ping/pong server started in port " + port)
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {

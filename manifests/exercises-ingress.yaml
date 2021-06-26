@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
+  namespace: exercises
   name: exercises-ingress
 spec:
   rules:

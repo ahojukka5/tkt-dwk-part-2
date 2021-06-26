@@ -1,4 +1,15 @@
-#!/usr/bin/sh
+#!/bin/sh
+
+set -e
+
+docker build -t ahojukka5/dwk-mainapp-gen-timestamp mainapp/gen-timestamp
+docker push ahojukka5/dwk-mainapp-gen-timestamp
+
+docker build -t ahojukka5/dwk-mainapp-read-timestamp mainapp/read-timestamp
+docker push ahojukka5/dwk-mainapp-read-timestamp
+
+docker build -t ahojukka5/dwk-pingpong pingpong
+docker push ahojukka5/dwk-pingpong
 
 docker build -t ahojukka5/dwk-todo-backend todo-backend
 docker push ahojukka5/dwk-todo-backend

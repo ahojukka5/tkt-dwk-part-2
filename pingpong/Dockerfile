@@ -1,11 +1,11 @@
 FROM golang as build
 
-COPY . /build
-WORKDIR /build
+COPY . /app
+WORKDIR /app
 
 RUN CGO_ENABLED=0 go build -a -ldflags '-s' .
 
-# FROM scratch
 FROM alpine:latest
-COPY --from=build /build/pingpong /app/pingpong
-ENTRYPOINT ["/app/pingpong"]
+COPY --from=build /app/ /app/
+EXPOSE 8000
+CMD ["/app/pingpong"]

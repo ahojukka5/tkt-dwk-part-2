@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: todo-ingress
+  name: exercises-ingress
 spec:
   rules:
   - http:
       paths:
       - path: /
         backend:
-          serviceName: todo-frontend-svc
+          serviceName: mainapp-svc
           servicePort: 3000
-      - path: /api
+      - path: /pingpong
         backend:
-          serviceName: todo-backend-svc
+          serviceName: pingpong-svc
           servicePort: 8000

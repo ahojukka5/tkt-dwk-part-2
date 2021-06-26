@@ -22,13 +22,13 @@ Link: <https://devopswithkubernetes.com/part-1>
 
 Link: <https://devopswithkubernetes.com/part-2>
 
-- Exercise 2.01: Connecting pods ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.01))
-- Exercise 2.02: Project v1.0 ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.02))
-- Exercise 2.03: Keep them separated ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.03))
-- Exercise 2.04: Project v1.1 ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.04))
-- Exercise 2.05: Secrets ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.05))
-- Exercise 2.06: Documentation and ConfigMaps ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.06))
-- Exercise 2.07: Stateful applications ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.07))
-- Exercise 2.08: Project v1.2 ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.08))
-- Exercise 2.09: Daily todos ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.09))
-- Exercise 2.10: Project v1.3 ([link](https://github.com/ahojukka5/tkt-dwk-part-1/tree/2.10))
+- Exercise 2.01: Connecting pods ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.01))
+- Exercise 2.02: Project v1.0 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.02))
+- Exercise 2.03: Keep them separated ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.03))
+- Exercise 2.04: Project v1.1 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.04))
+- Exercise 2.05: Secrets ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.05))
+- Exercise 2.06: Documentation and ConfigMaps ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.06))
+- Exercise 2.07: Stateful applications ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.07))
+- Exercise 2.08: Project v1.2 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.08))
+- Exercise 2.09: Daily todos ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.09))
+- Exercise 2.10: Project v1.3 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.10))

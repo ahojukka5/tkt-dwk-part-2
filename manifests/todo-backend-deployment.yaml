@@ -16,3 +16,9 @@ spec:
       containers:
         - name: todo-backend
           image: ahojukka5/dwk-todo-backend:latest
+          env:
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: todo-secrets
+                  key: MONGO_PASSWORD

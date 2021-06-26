@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: todo
+  name: todo-cronjob
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: todo-cronjob
+              image: ahojukka5/dwk-todo-cronjob:latest
+              env:
+                - name: MONGO_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: todo-secrets
+                      key: MONGO_PASSWORD
+          restartPolicy: OnFailure

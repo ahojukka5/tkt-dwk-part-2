@@ -16,3 +16,9 @@ spec:
       containers:
         - name: pingpong
           image: ahojukka5/dwk-pingpong:latest
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pingpong-secrets
+                  key: POSTGRES_PASSWORD

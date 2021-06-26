@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: ahojukka5/dwk-pingpong:0.6
+          image: ahojukka5/dwk-pingpong:latest

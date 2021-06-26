@@ -16,13 +16,13 @@ spec:
         - name: cache
           emptyDir: {}
       containers:
-        - name: dwk-main-gen-timestamp
-          image: ahojukka5/dwk-main-gen-timestamp:0.2
+        - name: dwk-mainapp-gen-timestamp
+          image: ahojukka5/dwk-mainapp-gen-timestamp:latest
           volumeMounts:
             - name: cache
               mountPath: /cache
-        - name: dwk-main-read-timestamp
-          image: ahojukka5/dwk-main-read-timestamp:0.5
+        - name: dwk-mainapp-read-timestamp
+          image: ahojukka5/dwk-mainapp-read-timestamp:latest
           volumeMounts:
             - name: cache
               mountPath: /cache

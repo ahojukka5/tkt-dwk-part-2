@@ -17,5 +17,7 @@ docker push ahojukka5/dwk-todo-backend
 docker build -t ahojukka5/dwk-todo-frontend todo-frontend
 docker push ahojukka5/dwk-todo-frontend
 
+docker build -t ahojukka5/dwk-todo-cronjob todo-cronjob && docker push ahojukka5/dwk-todo-cronjob
+
 docker build -t ahojukka5/dwk-secrets secrets
 docker push ahojukka5/dwk-secrets

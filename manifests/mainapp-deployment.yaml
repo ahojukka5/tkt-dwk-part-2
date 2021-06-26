@@ -16,6 +16,9 @@ spec:
       volumes:
         - name: cache
           emptyDir: {}
+        - name: config-volume
+          configMap:
+            name: mainapp-config
       containers:
         - name: dwk-mainapp-gen-timestamp
           image: ahojukka5/dwk-mainapp-gen-timestamp:latest
@@ -27,3 +30,11 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: /cache
+            - name: config-volume
+              mountPath: /etc/config
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: mainapp-config
+                  key: MSG1

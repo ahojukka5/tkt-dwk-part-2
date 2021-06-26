@@ -105,6 +105,11 @@ func postTodo(w http.ResponseWriter, r *http.Request) {
 	item.ID = primitive.NewObjectID()
 	item.Task = itemWithoutID.Task
 	println("postTodo: new todo item: " + item.Task)
+	if len(item.Task) > 140 {
+		println("postTodo: message is too long, over 140 characters!")
+		http.Error(w, http.StatusText(http.StatusUnprocessableEntity), http.StatusUnprocessableEntity)
+		return
+	}
 	result, err := collection.InsertOne(ctx, item)
 	if err != nil {
 		fmt.Println("Failed to insert to database:", err)

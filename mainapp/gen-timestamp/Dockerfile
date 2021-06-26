@@ -1,10 +1,10 @@
 FROM golang as build
 
-COPY . /build
-WORKDIR /build
+COPY . /app
+WORKDIR /app
 
-RUN CGO_ENABLED=0 go build -o gen_timestamp -a -ldflags '-s' gen_timestamp.go
+RUN CGO_ENABLED=0 go build -a -ldflags '-s' .
 
-FROM scratch
-COPY --from=build /build/gen_timestamp .
-ENTRYPOINT ["./gen_timestamp"]
+FROM alpine:latest
+COPY --from=build /app/ /app/
+CMD ["/app/gen-timestamp"]

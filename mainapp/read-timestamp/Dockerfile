@@ -1,10 +1,11 @@
 FROM golang as build
 
-COPY . /build
-WORKDIR /build
+COPY . /app
+WORKDIR /app
 
-RUN CGO_ENABLED=0 go build -o read_timestamp -a -ldflags '-s' read_timestamp.go
+RUN CGO_ENABLED=0 go build -a -ldflags '-s' .
 
 FROM alpine:latest
-COPY --from=build /build/read_timestamp .
-ENTRYPOINT ["./read_timestamp"]
+COPY --from=build /app/ /app/
+EXPOSE 3000
+CMD ["/app/read-timestamp"]

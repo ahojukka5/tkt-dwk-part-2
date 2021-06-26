@@ -8,6 +8,8 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+const port = ":3000"
+
 func main() {
 	random_string := uuid.NewV4()
 
@@ -33,8 +35,7 @@ func main() {
 		fmt.Fprintf(w, "Ping Pongs: %s\n", cnt)
 	})
 
-	port := "3000"
-	println("Server started in port " + port)
-	http.ListenAndServe(":"+port, nil)
+	println("mainapp server listening in address http://localhost" + port)
+	http.ListenAndServe(port, nil)
 
 }
